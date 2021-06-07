@@ -1,0 +1,101 @@
+
+Python doesn't have double floating type.
+
+// - floor division
+** - power
+
+Python uses dynamic typing, meaning you can reassign variables to different data types.
+
+Indexing starts at 0 for Python unlike R.
+
+We can use a : to perform slicing which grabs everything up to a designated point.  
+
+You'll notice this a lot in Python, where statements are usually in the context of "up to, but not including".
+eg : # Grab everything UP TO the 3rd index
+     s[:3]
+
+We can also use negative indexing.
+eg : # Last letter (one index behind 0 so it loops back around)
+       s[-1]
+
+We can also use index and slice notation to grab elements of a sequence by a specified step size (the default is 1). 
+For instance we can use two colons in a row and then a number specifying the frequency to grab elements.
+eg : # Grab everything, but go in step sizes of 2
+     s[::2]
+     'HloWrd'
+
+# We can use this to print a string backwards
+s[::-1]
+
+strings have an important property known as immutability. 
+This means that once a string is created, the elements within it can not be changed or replaced.
+
+We can use the .format() method to add formatted objects to printed string statements.
+eg : 'Insert another string with curly brackets: {}'.format('The inserted string')
+     'Insert another string with curly brackets: The inserted string'
+
+We can use .format() for float formatting also. {value:width.precision f}
+eg : {0.123:1.2f}  
+     0.12
+
+f-strings offer several benefits over the older .format() string method.
+you can bring outside variables immediately into to the string rather than pass them as arguments through .format(var).
+eg : name = 'Fred'
+     print(f"He said his name is {name!r}.")
+     He said his name is 'Fred'
+
+Pass !r to get the string representation.
+
+{value:10.4f}, with f-strings this can become {value:{10}.{6}}
+
+with f-strings, precision refers to the total number of digits, not just those following the decimal. 
+This fits more closely with scientific notation and statistical analysis. 
+Unfortunately, f-strings do not pad to the right of the decimal, even if precision allows it:
+
+List in python is similar to list in R in the sense that both can hold diff datatype objects.
+Unlike strings, they are mutable, meaning the elements inside a list can be changed.
+
+Indexing and slicing work just like in strings.
+
+append method - to permanently add an item to the end of a list
+pop to "pop off" an item from the list. By default pop takes off the last index, 
+but you can also specify which index to pop off.
+
+A great feature of of Python data structures is that they support nesting. 
+This means we can have data structures within data structures like R.
+
+Dictionaries ordered and can not be sorted. Can be changed.
+{'key' : 'value1'}
+
+Tuple - similar to list. 1 key diff is tuples are immutable.Good for data integrity.
+(1,'e')
+
+Indexing and slicing work just like in lists.
+
+There are only 2 methods for tuples. index() and count().
+
+Sets are an unordered collection of unique elements. We can construct them by using the set() function.
+
+x = set()
+# We add to sets with the add() method
+x.add(1)
+
+Sets are written with curly brackets. A set can contain different data types.
+eg : set1 = {"abc", 34, True, 40, "male"}
+
+Set is used mostly for identifying unique values in object.
+
+
+This function is specific to jupyter notebooks!
+%%writefile test.txt
+Hello, this is a quick test file.
+
+# Seek to the start of file (index 0)
+my_file.seek(0)
+
+# Readlines returns a list of the lines in the file
+my_file.seek(0)
+my_file.readlines()
+
+By default, the open() function will only allow us to read the file.
+
