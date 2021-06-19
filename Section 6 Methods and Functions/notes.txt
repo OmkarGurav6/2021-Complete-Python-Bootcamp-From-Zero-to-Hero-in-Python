@@ -79,17 +79,3 @@ G: Global (module) — Names assigned at the top-level of a module file, or decl
 
 B: Built-in (Python) — Names preassigned in the built-in names module : open, range, SyntaxError,...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
