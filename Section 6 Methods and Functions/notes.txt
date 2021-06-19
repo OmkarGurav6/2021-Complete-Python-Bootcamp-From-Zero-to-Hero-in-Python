@@ -1,0 +1,95 @@
+ 
+Methods are essentially functions built into objects.
+
+Methods are in the form : object.method(arg1,arg2,etc...)
+
+we can think of methods as having an argument 'self' referring to the object itself. 
+
+In general, use snake casing for defining function name. snake casing is all lowercase with underscores between words.
+
+def name_of_function(arg1,arg2):
+    '''
+    This is where the function's Document String (docstring) goes.
+    When you call help() on your function it will be printed out.
+    It explains function.
+    '''
+    # Do stuff here
+    # Return desired result
+
+''' allows to write multi-line comments.
+
+functions often return tuples, to easily return multiple results for later use.
+
+*args
+When a function parameter starts with an asterisk, it allows for an arbitrary number of arguments, 
+and the function takes them in as a tuple of values. 
+The word "args" is itself arbitrary - any word will do so long as it's preceded by an asterisk.
+
+eg : def myfunc(*args):
+         print(args)
+
+     myfunc(40,60,20)
+     (40,60,20)
+
+Similarly, Python offers a way to handle arbitrary numbers of keyworded arguments. 
+Instead of creating a tuple of values, **kwargs builds a dictionary of key/value pairs.
+
+eg : def myfunc(**kwargs):
+         print(kwargs)
+         if 'fruit' in kwargs:
+            print(f"My favorite fruit is {kwargs['fruit']}")  
+         else:
+            print("I don't like fruit")
+        
+     myfunc(fruit='pineapple', vegetable='lettuse')
+     {'fruit':'pineapple','vegetable':'lettuse'}
+     My favorite fruit is pineapple
+
+The map function allows you to "map" a function to an iterable object. 
+That is to say you can quickly call the same function to every item in an iterable, such as a list.
+This is similar to lapply() in R but map() doesn't return values directly.
+
+map(FUN, list)
+
+The filter function returns an iterator yielding those items of iterable for which function(item) is true.
+Meaning you need to filter by a function that returns either True or False.
+
+eg : def check_even(num):
+         return num % 2 == 0
+     nums = [0,1,2,3,4,5,6,7,8,9,10]
+     filter(check_even,nums)
+     <filter at 0x205baed4710>
+     list(filter(check_even,nums))
+     [0, 2, 4, 6, 8, 10]
+
+lambda expressions allow us to create "anonymous" functions. 
+This basically means we can quickly make ad-hoc functions without needing to properly define a function using def.
+lambda's body is a single expression, not a block of statements.
+The lambda's body is similar to what we would put in a def body's return statement.
+
+eg : list(filter(lambda n: n % 2 == 0,nums))
+
+LEGB Rule:
+
+L: Local — Names assigned in any way within a function (def or lambda), and not declared global in that function.
+
+E: Enclosing function locals — Names in the local scope of any and all enclosing functions (def or lambda), from inner to outer.
+
+G: Global (module) — Names assigned at the top-level of a module file, or declared global in a def within the file.
+
+B: Built-in (Python) — Names preassigned in the built-in names module : open, range, SyntaxError,...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
