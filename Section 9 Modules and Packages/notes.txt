@@ -1,0 +1,32 @@
+
+PyPI is a repository for open source third party python packages.
+
+pip install package_name
+
+Modules in Python are simply Python files with the .py extension, which implement a set of functions. 
+Modules are imported from other modules using the import command.
+
+To import a module, we use the import command.
+
+The first time a module is loaded into a running Python script, it is initialized by executing the code in the module once. 
+If another module in your code imports the same module again, it will not be loaded twice but once only - 
+so local variables inside the module act as a "singleton" - they are initialized only once.
+
+We can look for which functions are implemented in each module by using the dir function.
+
+Packages are name-spaces which contain multiple packages and modules themselves. They are simply directories, but with a twist.
+
+Each package in Python is a directory which MUST contain a special file called __init__.py. 
+This file can be empty, and it indicates that the directory it contains is a Python package, so it can be imported the same way a module can be imported.
+
+The __init__.py file can also decide which modules the package exports as the API, while keeping other modules internal, by overriding the __all__ variable.
+
+__name__ is builtin variable which evaluate to the name of the current module.
+
+Since there is no main() function in Python, when the command to run a python program is given to the interpreter,
+the code that is at level 0 indentation is to be executed. 
+However, before doing that, it will define a few special variables. __name__ is one such special variable. 
+If the source file is executed as the main program, the interpreter sets the __name__ variable to have a value “__main__”. 
+If this file is being imported from another module, __name__ will be set to the module’s name.
+
+Builtin variable __name__ allows us to see whether something is being imported or run directly.
