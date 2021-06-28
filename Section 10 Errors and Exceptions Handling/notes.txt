@@ -1,0 +1,100 @@
+
+Errors detected during execution are called exceptions and are not unconditionally fatal.
+
+The code which can cause an exception to occur is put in the try block and 
+the handling of the exception is then implemented in the except block of code.
+
+try:
+   You do your operations here...
+   ...
+except ExceptionI:
+   If there is ExceptionI, then execute this block.
+except ExceptionII:
+   If there is ExceptionII, then execute this block.
+   ...
+else:
+   If there is no exception then execute this block. 
+
+We can also just check for any exception with just using except.
+
+The finally: block of code will always be run regardless if there was an exception in the try code block. 
+
+try:
+   Code block here
+   ...
+   Due to any exception, this code may be skipped!
+finally:
+   This code block would always be executed.
+
+
+def askint():
+    while True:
+        try:
+            val = int(input("Please enter an integer: "))
+        except:
+            print("Looks like you did not enter an integer!")
+            continue
+        else:
+            print("Yep that's an integer!")
+            break
+        finally:
+            print("Finally, I executed!")
+        print(val)
+
+askint()
+Please enter an integer: five
+Looks like you did not enter an integer!
+Finally, I executed!
+Please enter an integer: four
+Looks like you did not enter an integer!
+Finally, I executed!
+Please enter an integer: 3
+Yep that's an integer!
+Finally, I executed!
+
+With a try/except/finally clause, any continue or break statements are reserved until after the try clause is completed. 
+This means that even though a successful input of 3 brought us to the else: block, and a break statement was thrown, 
+the try clause continued through to finally: before breaking out of the while loop. 
+
+It's perfectly OK (and "pythonic") to use try/except for flow control,
+but it makes sense most when Exceptions are actually exceptional.
+
+whereas an if statement always costs you, it's nearly free to set up a try/except block. But when an Exception actually occurs, the cost is much higher.
+
+The generally preferred Pythonic style is EAFP.
+
+Easier to ask for forgiveness than permission. 
+This common Python coding style assumes the existence of valid keys or attributes and catches exceptions if the assumption proves false. 
+This clean and fast style is characterized by the presence of many try and except statements. 
+The technique contrasts with the LBYL(Look before you leap) style common to many other languages such as C.
+
+As we begin to expand to large multi-file projects it becomes important to have tests in place.
+This way as we make changes or update our code, we can run our test files to make sure previous code still
+runs as expected.
+
+Equally important as writing good code is writing good tests. 
+Better to find bugs yourself than have them reported to you by end users!
+
+We can run terminal commands from a jupyter cell using !
+
+There are several testing tools like pylint, pyflakes, pep8.
+The default coding style used by Pylint is close to PEP 8.
+
+These are simple tools that merely look at your code, and they'll tell you if there are style issues or 
+simple problems like variable names being called before assignment.
+
+A far better way to test your code is to write tests that send sample data to your program, 
+and compare what's returned to a desired outcome.
+
+Two such tools are available from the standard library: unittest, doctest
+
+Pylint will display a number of messages as it analyzes the code and 
+it can also be used for displaying some statistics about the number of warnings and errors found in different files. 
+The messages are classified under various categories such as errors and warnings.
+The code is given an overall mark, based on the number and severity of the warnings and errors.
+
+In the newest version of PyLint you need to add -r y (report yes) at the end of the command, so the full command should be:
+pylint myexample.py -r y
+
+unittest lets you write your own test programs. The goal is to send a specific set of data to your program, and 
+analyze the returned results against an expected result.
