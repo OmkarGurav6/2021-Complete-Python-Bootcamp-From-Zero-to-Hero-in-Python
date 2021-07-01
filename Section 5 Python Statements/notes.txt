@@ -61,8 +61,6 @@ pass: Does nothing at all.
 
 The range function allows you to quickly generate a list of integers.
 There are 3 parameters you can pass, a start, a stop, and a step size.
-this is a generator function, so to actually get a list out of it, we need to cast it to a list with list().
-generator a special type of function that will generate information and not need to save it to memory.
 
 # Notice how 11 is not included, up to but not including 11, just like slice notation!
 list(range(0,11))
