@@ -1,0 +1,74 @@
+
+Generators allow us to generate as we go along, instead of holding everything in memory.
+
+In most aspects, a generator function will appear very similar to a normal function. 
+The main difference is when a generator function is compiled they become an object that supports an iteration protocol.
+
+Generators are best for calculating large sets of results (particularly in calculations that involve loops themselves) in cases 
+where we don’t want to allocate the memory for all of the results at the same time.
+
+eg : def gencubes(n):
+         for num in range(n):
+             yield num**3
+
+     for val in gencubes(3):
+         print(val)
+
+     0
+     1
+     8
+
+42
+
+In a, b = b, a + b, the expressions on the right hand side are evaluated before being assigned to the left hand side. So it is equivalent to:
+
+c = a + b
+a = b
+b = c
+
+The next() function allows us to access the next element in a sequence. 
+
+g = genfibon(3)
+print(next(g))
+1
+print(next(g))
+1
+print(next(g))
+2
+print(next(g))
+StopIteration                             Traceback (most recent call last)
+<ipython-input-34-1dfb29d6357e> in <module>
+----> 1 print(next(g))
+
+StopIteration: 
+
+
+After yielding all the values, next() causes a StopIteration error. 
+This error informs us that all the values have been yielded.
+
+strings are iterables but that doesn't mean the string itself is an iterator! 
+we can not directly iterate over it as we could with a generator function. The iter() function allows us to do just that!
+
+
+An ITERABLE is:
+
+anything that can be looped over (i.e. you can loop over a string or file) or
+anything that can appear on the right-side of a for-loop: for x in iterable: ... or
+anything you can call with iter() that will return an ITERATOR: iter(obj) or
+an object that defines __iter__ that returns a fresh ITERATOR
+
+An ITERATOR is an object:
+
+with state that remembers where it is during iteration,
+with a __next__ method that:
+   returns the next value in the iteration
+   updates the state to point at the next value
+   signals when it is done by raising StopIteration
+and that is self-iterable (meaning that it has an __iter__ method that returns self).
+
+A generator object is generated once, but its code is not run all at once. 
+Only calls to next actually execute (part of) the code. Execution of the code in a generator stops once a yield statement has been reached, upon which it returns a value. 
+The next call to next then causes execution to continue in the state in which the generator was left after the last yield. 
+This is a fundamental difference with regular functions: those always start execution at the "top" and discard their state upon returning a value.
+
+
