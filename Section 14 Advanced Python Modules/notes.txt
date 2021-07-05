@@ -1,0 +1,224 @@
+
+
+Collections Module :
+
+The collections module is a built-in module that implements specialized container data types 
+providing alternatives to Python’s general purpose built-in containers.
+
+Counter is a dict subclass which helps count hashable objects. 
+Inside of it elements are stored as dictionary keys and the counts of the objects are stored as the value.
+
+Common patterns when using the Counter() object
+sum(c.values())                 # total of all counts
+c.clear()                       # reset all counts
+list(c)                         # list unique elements
+set(c)                          # convert to a set
+dict(c)                         # convert to a regular dictionary
+c.items()                       # convert to a list of (elem, cnt) pairs
+Counter(dict(list_of_pairs))    # convert from a list of (elem, cnt) pairs
+c.most_common()[:-n-1:-1]       # n least common elements
+c += Counter()                  # remove zero and negative counts
+
+
+defaultdict is a dictionary-like object which provides all methods provided by a dictionary but 
+takes a first argument (default_factory) as a default data type for the dictionary. 
+Using defaultdict is faster than doing the same using dict.set_default method.
+
+A defaultdict will never raise a KeyError. Any key that does not exist gets the value returned by the default factory.
+
+d = defaultdict(lambda: 0)
+d['one']
+0
+
+
+A namedtuple assigns names, as well as the numerical index, to each member.
+
+Each kind of namedtuple is represented by its own class, created by using the namedtuple() factory function.
+The arguments are the name of the new class and a string containing the names of the elements.
+
+Dog = namedtuple('Dog',['age','breed','name'])
+sam = Dog(age=2,breed='Lab',name='Sammy')
+sam.age
+2
+sam[0]
+2
+
+basically think of namedtuples as a very quick way of creating a new object/class type with some attribute fields.
+
+
+
+Python has a built-in os module that allows us to use operating system dependent functionality.
+
+import os
+os.getcwd()
+os.listdir()
+
+The os module provides 3 methods for deleting files:
+
+os.unlink(path) which deletes a file at the path your provide
+os.rmdir(path) which deletes a folder (folder must be empty) at the path your provide
+shutil.rmtree(path) this is the most dangerous, as it will remove all files and folders contained in the path.
+
+All of these methods can not be reversed! Which means if you make a mistake you won't be able to recover the file.
+Instead we can use the send2trash module. A safer alternative that sends deleted files to the trash bin instead of permanent removal.
+
+Often we just need to "walk" through a directory, that is visit every file or folder and check to see if a file is in the directory, 
+and then perhaps do something with that file. Usually recursively walking through every file and folder in a directory would be quite tricky to program,
+but luckily the os module has a direct method call for this called os.walk().
+
+for folder, sub_folders, files in os.walk() is generally used.
+
+We can use the built-in shutil module to move files to different locations. 
+
+import shutil
+shutil.move(src, dest)
+
+
+
+datetime module is used for date time.
+
+
+
+Python comes with a built in math module and random module.
+Random Module allows us to create random numbers. We can even set a seed to produce the same random set every time.
+Generally seed is set as 101 or 42.
+
+random.choice(mylist) Grabs a random item from a list.
+
+Sample with Replacement : random.choices(population=mylist,k=10)
+
+Sample without Replacement : random.sample(population=mylist,k=10)
+
+NumPy library covers all these capabilities with extreme efficiency.
+
+
+
+Python's built-in debugger module (pdb) implements an interactive debugging environment for Python programs.
+It includes features to let you pause your program, look at the values of variables, and 
+watch program execution step-by-step, so you can understand what your program actually does and find bugs in the logic.
+
+pdb.set_trace() lets us stop execution and explore variable values.
+
+
+
+For regular expressions built in module re is used.
+match = re.search(pattern, text)
+match.span()
+match.group()
+'phone'
+
+If we want a list of all matches, we can use .findall() method.
+
+matches = re.findall("phone",text)
+matches
+['phone', 'phone']
+
+when defining a pattern string for regular expression we use the format:
+r'mypattern'
+
+placing the r in front of the string allows python to understand that the \ in the pattern string are not meant to be escape slashes.
+
+Character Identifiers
+
+Character	Description	Example Pattern Code	Exammple Match
+
+\d	        A digit	          file_\d\d	          file_25
+\w	        Alphanumeric	  \w-\w\w\w	           A-b_1
+\s	        White space	   a\sb\sc	           a b c
+\D	        A non digit	   \D\D\D	            ABC
+\W	        Non-alphanumeric   \W\W\W\W\W	           *-+=)
+\S	        Non-whitespace	   \S\S\S\S	           Yoyo
+
+
+Quantifiers
+
+Character  Description	           Example Pattern Code	   Exammple Match
+
++	   Occurs 1 or more times     version \w-w\+        version \A-b1_1
+{3}	   Occurs exactly 3 times     \D{3}                  abc
+{2,4}	   Occurs 2 to 4 times	      \d{2,4}                123
+{3,}	   Occurs 3 or more times     \w{3,}                 anychd
+*	   Occurs 0 or more times     A*B*C*                 AAACC
+?	   Once or none	              plurals?               plural
+
+We can use groups for any general task that involves grouping together regular expressions (so that we can later break them down).
+we can separate groups of regular expressions using parenthesis:
+
+phone_pattern = re.compile(r'(\d{3})-(\d{3})-(\d{4})')
+# The entire result
+results.group()
+'408-555-1234'
+
+# Can then also call by group position.
+# remember groups were separated by parenthesis ()
+# Something to note is that group ordering starts at 1. Passing in 0 returns everything
+results.group(1)
+'408'
+
+Use a "wildcard" as a placement that will match any character placed there. We can use a simple period .
+We can alternatively use character identifier.
+
+We can use the ^ to signal starts with, and the $ to signal ends with:
+
+To exclude characters, we can use the ^ symbol in conjunction with a set of brackets []. 
+Anything inside the brackets is excluded.
+
+we can use brackets to group together options, 
+
+
+
+We can try using the time module to simply calculate the elapsed time for the code.
+Due to the time module's precision, the code needs to take at least 0.1 seconds to complete.
+
+import time
+start_time = time.time()
+# Step 2: Run your code you want to time
+result = func_one(1000000)
+# Step 3: Calculate total time elapsed
+end_time = time.time() - start_time
+
+If we have two blocks of code that are quite fast, the difference from the time.time() method may not be enough to tell which is fater.
+In this case, we can use the timeit module.
+
+The timeit module takes in two strings, a statement (stmt) and a setup. 
+It then runs the setup code and runs the stmt code some n number of times and reports back average length of time it took.
+
+The setup is anything that needs to be defined beforehand, such as def functions.
+
+import timeit
+
+setup = '''
+def func_one(n):
+    return [str(num) for num in range(n)]
+'''
+
+stmt = 'func_one(100)'
+
+timeit.timeit(stmt,setup,number=100000)
+
+Jupyter "magic" method is ONLY available in Jupyter and the magic command needs to be at the top of the cell with nothing above it (not even commented code).
+
+%%timeit
+func_one(100)
+49 µs ± 518 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+
+The zipfile library is built in to Python, we can use it to compress folders or files.
+import zipfile
+
+Create Zip file first , then write to it (the write step compresses the files.)
+comp_file = zipfile.ZipFile('comp_file.zip','w')
+comp_file.write("new_file.txt",compress_type=zipfile.ZIP_DEFLATED)
+
+We can easily extract files with either the extractall() method to get all the files, or just using the extract() method to only grab individual files.
+
+Often we don't want to extract or archive individual files from a .zip, but instead archive everything at once.
+The shutil library that is built in to python has easy to use commands for this.
+
+For compressing
+shutil.make_archive(output_zip_filename,'zip',directory_to_zip)
+
+For unzipping
+shutil.unpack_archive(zip_file,dir_for_extract_result,'zip')
+
+Use shutil for zipping /unzipping. It is most efficient method.
+
