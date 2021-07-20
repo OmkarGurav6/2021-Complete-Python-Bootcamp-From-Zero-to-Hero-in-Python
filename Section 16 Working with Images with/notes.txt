@@ -1,0 +1,36 @@
+
+For working with images, use Pillow library which is fork of PIL(Python Imaging Library).
+
+When working with images in the jupyter notebook, you may get the following warning:
+
+IOPub data rate exceeded.
+The notebook server will temporarily stop sending output
+to the client in order to avoid crashing it.
+To change this limit, set the config variable
+`--NotebookApp.iopub_data_rate_limit`.
+
+If you get this warning, try stopping the notebook at the command line, then restarting it with:
+
+jupyter notebook --NotebookApp.iopub_data_rate_limit=1.0e10
+
+Basically this adds a "flag" that the limit should be raised during this session of jupyter notebook that you are running.
+
+Only for jupyter notebook mac(objectname) will show image, use mac.show() for other IDEs. 
+
+The crop() method returns a rectangular region from this image. 
+The box is a 4-tuple defining the left, upper, right, and lower pixel coordinate.
+
+All the coordinates of box (x, y, w, h) are measured from the top left corner of the image.
+In short coordinates are start of image x, start of image y, end of image x, end of image y.
+
+Note this is not permanent change
+for permanent change, do a reassignment
+e.g. nlp = nlp.resize((100,100))
+
+You can rotate images by specifying the amount of degrees to rotate on the rotate() method. 
+The original dimensions will be kept and "filled" in with black. 
+You can optionally pass in the expand parameter to fill the new rotated image to the old dimensions.
+
+We can add an alpha value (RGBA stands for RED,Green,Blue, Alpha) where values can go from 0 to 255.
+If Alpha is 0 the image is completely transparent, if it is 255 then its completely opaque.
+We can adjust image alpha values with the putalpha() method.
