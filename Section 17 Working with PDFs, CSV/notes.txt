@@ -1,0 +1,27 @@
+
+Python has built-in csv library.
+Other option is to use pandas library.
+
+Often csv files may contain characters that you can't interpret with standard python, 
+this could be something like an @ symbol, or even foreign characters.
+we need to specify encoding.
+
+eg:  data = open('example.csv',encoding="utf-8")
+
+'<': Forces the field to be left-aligned within the available space (this is the default for most objects).
+'>': Forces the field to be right-aligned within the available space (this is the default for numbers).
+
+As far as PyPDF2 is concerned, it can only read the text from a PDF document, it won't be able to grab images or other media files from a PDF.
+
+We can not write to PDFs using Python because of the differences between the single string type of Python, 
+and the variety of fonts, placements, and other parameters that a PDF could have.
+
+
+
+
+
+
+
+
+
+
