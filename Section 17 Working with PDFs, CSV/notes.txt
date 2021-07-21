@@ -16,12 +16,3 @@ As far as PyPDF2 is concerned, it can only read the text from a PDF document, it
 We can not write to PDFs using Python because of the differences between the single string type of Python, 
 and the variety of fonts, placements, and other parameters that a PDF could have.
 
-
-
-
-
-
-
-
-
-
