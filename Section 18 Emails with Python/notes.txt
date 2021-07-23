@@ -1,0 +1,38 @@
+
+The smtplib library allows you to manually go through the steps of creating and sending an email in Python.
+
+Create an SMTP object for a server that can make the method calls to log you in to your email in order to send messages. 
+If the port number 587 does not work on your computer, try using 465 instead. 
+
+smtp_object = smtplib.SMTP('smtp.gmail.com',587)
+
+Next we run the ehlo() command which "greets" the server and establishes the connection. 
+This method call should be done directly after creating the object.
+The first item in the tuple that is returned should be 250, indicating a successful connection.
+
+smtp_object.ehlo()
+(250,
+ b'smtp.gmail.com at your service, [47.143.81.4]\nSIZE 35882577\n8BITMIME\nSTARTTLS\nENHANCEDSTATUSCODES\nPIPELINING\nCHUNKING\nSMTPUTF8')
+
+When using the 587 port, this means you are using TLS encryption, which you need to initiate by running the starttls() command. 
+If you are using port 465, this means you are using SSL and you can skip this step.
+
+smtp_object.starttls()
+(220, b'2.0.0 Ready to start TLS')
+
+If you also don't want your password to be visible when typing it in, 
+you can use the built-in getpass library that will hide your password as you type it in, 
+either with asterisks or by just keeping it invisible.
+
+For Gmail Users, you need to generate an app password instead of your normal email password. 
+
+create the App Password, choose Mail as the App and give it any name you want. 
+This will output a 16 letter password for you. Pass in this password as your login password for the smtp.
+
+If you get back an empty dictionary, then the sending was successful.
+
+
+we can read and search recieved emails through built-in imaplib library. 
+We will also use the built in email library for parsing through the recieved emails.
+
+we should be able to search for it using the specialized syntax of IMAP.
