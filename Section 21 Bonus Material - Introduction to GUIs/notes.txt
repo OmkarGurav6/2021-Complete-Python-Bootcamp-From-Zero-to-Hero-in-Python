@@ -1,0 +1,33 @@
+
+The interact function (ipywidgets.interact) automatically creates user interface (UI) controls for exploring code and data interactively.
+
+At the most basic level, interact auto-generates UI controls for function arguments, and then calls the function with those arguments 
+when you manipulate the controls interactively. 
+
+interact can also be used as a decorator. This allows you to define a function and interact with it in a single shot.
+
+# Using a decorator!
+@interact(x=True, y=1.0)
+def g(x, y):
+    return (x, y)
+
+For list and dictionary dropdown is created.
+
+In addition to interact, IPython provides another function, interactive, that is useful when you want to reuse the widgets that are produced 
+or access the data that is bound to the UI controls.
+
+unlike interact, the return value of the function will not be displayed automatically, 
+but you can display a value inside the function with IPython.display.display.
+
+Unlike interact, interactive returns a Widget instance rather than immediately displaying the widget.
+
+
+If you display the same widget twice, the displayed instances in the front-end will remain in sync with each other.
+
+use the link or jslink function to link two properties together.
+
+There are two ways to change the appearance of widgets in the browser. 
+The first is through the layout attribute which exposes layout-related CSS properties for the top-level DOM element of widgets,
+such as margins and positioning. The second is through the style attribute which exposes non-layout related attributes like button color and
+font weight. While layout is general to all widgets and containers of widgets, style offers tools specific to each type of widget.
+
